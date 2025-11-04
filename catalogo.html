@@ -110,24 +110,35 @@
   </header>
 
   <main>
-    <div class="filters">
-      <input type="text" id="searchInput" placeholder="Buscar palabra clave..." oninput="filterTables()" />
-      <select id="countryFilter" onchange="filterTables()">
-        <option value="">Filtrar por país</option>
-        <option value="México">México</option>
-        <option value="Costa Rica">Costa Rica</option>
-        <option value="España">España</option>
-        <option value="Perú">Perú</option>
-      </select>
-      <select id="personFilter" onchange="filterTables()">
-        <option value="">Filtrar por persona</option>
-        <option value="Grisel Pérez Villafuerte">Grisel Pérez Villafuerte</option>
-        <option value="Paulino Alexandro Velarde Espinoza">Paulino Alexandro Velarde Espinoza</option>
-        <option value="Julio Gisbert">Julio Gisbert</option>
-        <option value="Mar Daza Quintanilla">Mar Daza Quintanilla</option>
-        <!-- Agrega más personas según tu contenido -->
-      </select>
-    </div>
+   <div class="filters">
+  <input type="text" id="searchInput" placeholder="Buscar palabra clave..." oninput="filterTables()" />
+
+  <select id="modalityFilter" onchange="filterTables()">
+    <option value="">Filtrar por modalidad</option>
+    <option value="Virtual">Virtual</option>
+    <option value="Presencial">Presencial</option>
+    <option value="Ambas">Ambas</option>
+  </select>
+
+  <select id="donFilter" onchange="filterTables()">
+    <option value="">Filtrar por don</option>
+    <option value="✅">Sí</option>
+    <option value="❌">No</option>
+  </select>
+
+  <select id="categoryFilter" onchange="filterTables()">
+    <option value="">Filtrar por clasificación</option>
+    <option value="Agroecología práctica">Agroecología práctica</option>
+    <option value="Mercados campesinos">Mercados campesinos</option>
+    <option value="Bancos de tiempo">Bancos de tiempo</option>
+    <option value="Nutrición consciente">Nutrición consciente</option>
+    <option value="Software libre">Software libre</option>
+    <option value="Salud integral">Salud integral</option>
+    <option value="Idiomas y traducción">Idiomas y traducción</option>
+    <!-- Agrega más categorías según tu contenido -->
+  </select>
+</div>
+
 
     <details open>
       <summary>🌱 Agroecologías y Economías para la Vida</summary>
@@ -308,5 +319,6 @@
 
 </body>
 </html>
+
 
 
