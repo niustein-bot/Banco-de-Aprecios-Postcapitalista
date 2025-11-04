@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Banco de Aprecios Postcapitalista</title>
   <style>
     body {
@@ -29,6 +29,20 @@
       padding: 20px;
       max-width: 700px;
       margin: auto;
+    }
+
+    .filters {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    input, select {
+      padding: 8px;
+      font-size: 1em;
+      border: 1px solid #ccc;
+      border-radius: 4px;
     }
 
     details {
@@ -96,70 +110,82 @@
   </header>
 
   <main>
+    <div class="filters">
+      <input type="text" id="searchInput" placeholder="Buscar palabra clave..." oninput="filterTables()" />
+      <select id="countryFilter" onchange="filterTables()">
+        <option value="">Filtrar por país</option>
+        <option value="México">México</option>
+        <option value="Costa Rica">Costa Rica</option>
+        <option value="España">España</option>
+        <option value="Perú">Perú</option>
+      </select>
+      <select id="personFilter" onchange="filterTables()">
+        <option value="">Filtrar por persona</option>
+        <option value="Grisel Pérez Villafuerte">Grisel Pérez Villafuerte</option>
+        <option value="Paulino Alexandro Velarde Espinoza">Paulino Alexandro Velarde Espinoza</option>
+        <option value="Julio Gisbert">Julio Gisbert</option>
+        <option value="Mar Daza Quintanilla">Mar Daza Quintanilla</option>
+        <!-- Agrega más personas según tu contenido -->
+      </select>
+    </div>
 
     <details open>
-      <summary>1. Agroecologías y Economías para la Vida</summary>
-      <table>
-        <tr><th>Oferta</th><th>Clasificación</th><th>Descripción</th><th>Modalidad</th><th>Don</th><th>Persona</th><th>País</th></tr>
-        <tr><td>Curso-taller de Permacultura con énfasis en el sistema Milpa</td><td>Agroecología práctica</td><td>Enseñanza práctica de diseño ecológico integral desde la tradición mesoamericana</td><td>Virtual</td><td>✅</td><td>Miguel Carlos Esquivel Pineda</td><td>México</td></tr>
-        <!-- ...otros registros... -->
+      <summary>Agroecologías y Economías para la Vida</summary>
+      <table class="data-table">
+        <thead>
+          <tr><th>Oferta</th><th>Clasificación</th><th>Descripción</th><th>Modalidad</th><th>Don</th><th>Persona</th><th>País</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Curso-taller de Permacultura con énfasis en el sistema Milpa</td>
+            <td>Agroecología práctica</td>
+            <td>Diseño ecológico desde tradición mesoamericana</td>
+            <td>Virtual</td>
+            <td>✅</td>
+            <td>Miguel Carlos Esquivel Pineda</td>
+            <td>México</td>
+          </tr>
+          <tr>
+            <td>Formación en Bancos de Tiempo multiculturales</td>
+            <td>Bancos de tiempo</td>
+            <td>Formación en Bancos de Tiempo multiculturales</td>
+            <td>Ambas</td>
+            <td>✅</td>
+            <td>Julio Gisbert</td>
+            <td>España</td>
+          </tr>
+          <!-- Agrega más registros aquí -->
+        </tbody>
       </table>
     </details>
 
-    <details>
-      <summary>2. Salud, Sanación y Cuidados</summary>
-      <table>
-        <tr><th>Oferta</th><th>Clasificación</th><th>Descripción</th><th>Modalidad</th><th>Don</th><th>Persona</th><th>País</th></tr>
-        <tr><td>Sesiones de herbolaria</td><td>Herbolaria medicinal</td><td>Propiedades medicinales y elaboración de productos</td><td>Virtual</td><td>❌</td><td>Juan Solano Abadía</td><td>Costa Rica</td></tr>
-        <!-- ...otros registros... -->
-      </table>
-    </details>
-
-    <details>
-      <summary>3. Educación Popular, Saberes Emergentes y Formación Crítica</summary>
-      <table>
-        <tr><th>Oferta</th><th>Clasificación</th><th>Descripción</th><th>Modalidad</th><th>Don</th><th>Persona</th><th>País</th></tr>
-        <!-- ...registros... -->
-      </table>
-    </details>
-
-    <details>
-      <summary>4. Metodologías Participativas y Proyectos Transformadores</summary>
-      <table>
-        <tr><th>Oferta</th><th>Clasificación</th><th>Descripción</th><th>Modalidad</th><th>Don</th><th>Persona</th><th>País</th></tr>
-        <!-- ...registros... -->
-      </table>
-    </details>
-
-    <details>
-      <summary>5. Cultura Viva, Palabra y Comunicación</summary>
-      <table>
-        <tr><th>Oferta</th><th>Clasificación</th><th>Descripción</th><th>Modalidad</th><th>Don</th><th>Persona</th><th>País</th></tr>
-        <!-- ...registros... -->
-      </table>
-    </details>
-
-    <details>
-      <summary>6. Tecnologías, Computación y Herramientas Libres</summary>
-      <table>
-        <tr><th>Oferta</th><th>Clasificación</th><th>Descripción</th><th>Modalidad</th><th>Don</th><th>Persona</th><th>País</th></tr>
-        <!-- ...registros... -->
-      </table>
-    </details>
-
-    <details>
-      <summary>7. Puentes de Aprendizaje para Saberes Escolares</summary>
-      <table>
-        <tr><th>Oferta</th><th>Clasificación</th><th>Descripción</th><th>Modalidad</th><th>Don</th><th>Persona</th><th>País</th></tr>
-        <!-- ...registros... -->
-      </table>
-    </details>
+    <!-- Repite <details> con otras categorías como Salud, Educación, etc. -->
 
   </main>
 
   <footer>
     &copy; 2025 Red de Estudios Postcapitalistas.
   </footer>
+
+  <script>
+    function filterTables() {
+      const keyword = document.getElementById("searchInput").value.toLowerCase();
+      const country = document.getElementById("countryFilter").value;
+      const person = document.getElementById("personFilter").value;
+
+      document.querySelectorAll(".data-table tbody tr").forEach(row => {
+        const text = row.textContent.toLowerCase();
+        const rowCountry = row.cells[6]?.textContent.trim();
+        const rowPerson = row.cells[5]?.textContent.trim();
+
+        const matchKeyword = keyword === "" || text.includes(keyword);
+        const matchCountry = country === "" || rowCountry === country;
+        const matchPerson = person === "" || rowPerson === person;
+
+        row.style.display = (matchKeyword && matchCountry && matchPerson) ? "" : "none";
+      });
+    }
+  </script>
 
 </body>
 </html>
