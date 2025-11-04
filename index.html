@@ -26,17 +26,30 @@
     }
 
    
-@media screen and (max-width: 600px) {
-  nav {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  nav a {
-    font-size: 0.9em;
-    margin: 4px 0;
-  }
+nav {
+  background-color: #5b5f75; /* gris lavanda moderno */
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+  flex-wrap: wrap;
 }
+
+nav a {
+  color: #f3f4f6; /* gris claro suave */
+  text-decoration: none;
+  margin: 6px 12px;
+  font-weight: 500;
+  font-size: 0.95em;
+  transition: color 0.3s, background-color 0.3s;
+  padding: 6px 10px;
+  border-radius: 4px;
+}
+
+nav a:hover {
+  color: white;
+  background-color: #c084fc; /* lavanda digital */
+}
+
 
 
 
@@ -88,5 +101,6 @@
 
 </body>
 </html>
+
 
 
