@@ -338,32 +338,31 @@
     &copy; 2025 Red de Estudios Postcapitalistas.
   </footer>
 
-  <script>
+<script>
   function filterTables() {
     const keyword = document.getElementById("searchInput").value.toLowerCase();
-    const modality = document.getElementById("modalityFilter").value;
-    const don = document.getElementById("donFilter").value;
+    const person = document.getElementById("personFilter").value;
     const category = document.getElementById("categoryFilter").value;
 
     document.querySelectorAll(".data-table tbody tr").forEach(row => {
       const text = row.textContent.toLowerCase();
+      const rowPerson = row.cells[5]?.textContent.trim();
       const rowCategory = row.cells[1]?.textContent.trim();
-      const rowModality = row.cells[3]?.textContent.trim();
-      const rowDon = row.cells[4]?.textContent.trim();
 
       const matchKeyword = keyword === "" || text.includes(keyword);
+      const matchPerson = person === "" || rowPerson === person;
       const matchCategory = category === "" || rowCategory === category;
-      const matchModality = modality === "" || rowModality === modality;
-      const matchDon = don === "" || rowDon === don;
 
-      row.style.display = (matchKeyword && matchCategory && matchModality && matchDon) ? "" : "none";
+      row.style.display = (matchKeyword && matchPerson && matchCategory) ? "" : "none";
     });
   }
 </script>
 
 
+
 </body>
 </html>
+
 
 
 
