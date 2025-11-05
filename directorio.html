@@ -183,10 +183,16 @@ summary span {
     if (hash) {
       const target = document.querySelector(hash);
       if (target && target.tagName.toLowerCase() === 'details') {
+        // Cierra todos los detalles primero (opcional)
+        document.querySelectorAll('details').forEach(d => d.removeAttribute('open'));
+
+        // Abre el objetivo
         target.setAttribute('open', '');
+
+        // Espera un poco y hace scroll
         setTimeout(() => {
           target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 100);
+        }, 200);
       }
     }
   });
