@@ -25,39 +25,27 @@
       font-size: 3em;
     }
 
-   
-nav {
-  background-color: #5b5f75; /* gris lavanda moderno */
-  display: flex;
-  justify-content: center;
-  padding: 10px 0;
-  flex-wrap: wrap;
-}
-
-nav a {
-  color: #f3f4f6; /* gris claro suave */
-  text-decoration: none;
-  margin: 6px 12px;
-  font-weight: 500;
-  font-size: 0.95em;
-  transition: color 0.3s, background-color 0.3s;
-  padding: 6px 10px;
-  border-radius: 4px;
-}
-
-nav a:hover {
-  color: white;
-  background-color: #c084fc; /* lavanda digital */
-}
-
-
-
-
-    
-
     main {
       padding: 40px;
       text-align: center;
+    }
+
+    table {
+      margin: auto;
+      border-collapse: collapse;
+      width: 80%;
+      max-width: 600px;
+      background-color: white;
+    }
+
+    th, td {
+      padding: 10px;
+      border: 1px solid #ccc;
+    }
+
+    th {
+      background-color: #c084fc;
+      color: white;
     }
 
     footer {
@@ -75,32 +63,45 @@ nav a:hover {
     <h1>Banco de Aprecios Postcapitalista</h1>
   </header>
 
-  
-  
-  
- <script>
-  const sheetID = "1eFCQsU7M2OmXGIcfXhTpLP--RtYkT4FYDHMQPAr1cC8";
-  const sheetName = "Horas";
-  const url = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?tqx=out:json&sheet=${sheetName}`;
+  <main>
+    <h2>Registro de Puntos</h2>
+    <table id="puntosTable">
+      <thead>
+        <tr><th>Nombre</th><th>Puntos</th></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </main>
 
-  fetch(url)
-    .then(res => res.text())
-    .then(text => {
-      const json = JSON.parse(text.substr(47).slice(0, -2));
-      const rows = json.table.rows;
+  <script>
+    const sheetID = "1eFCQsU7M2OmXGIcfXhTpLP--RtYkT4FYDHMQPAr1cC8";
+    const sheetName = "Horas";
+    const url = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?tqx=out:json&sheet=${sheetName}`;
 
-      rows.forEach(row => {
-        const nombre = row.c[0]?.v;
-        const puntos = row.c[1]?.v;
-        console.log(`${nombre}: ${puntos}`);
-        // Aquí puedes mostrarlo en tu HTML, por ejemplo:
-        const p = document.createElement("p");
-        p.textContent = `${nombre}: ${puntos} puntos`;
-        document.body.appendChild(p);
+    fetch(url)
+      .then(res => res.text())
+      .then(text => {
+        const json = JSON.parse(text.substr(47).slice(0, -2));
+        const rows = json.table.rows;
+        const tbody = document.querySelector("#puntosTable tbody");
+
+        rows.forEach(row => {
+          const nombre = row.c[0]?.v || "";
+          const puntos = row.c[1]?.v || 0;
+
+          const tr = document.createElement("tr");
+          tr.innerHTML = `<td>${nombre}</td><td>${puntos}</td>`;
+          tbody.appendChild(tr);
+        });
+      })
+      .catch(err => {
+        console.error("Error al cargar los datos de Google Sheets:", err);
       });
-    })
-    .catch(err => {
-      console.error("Error al cargar los datos de Google Sheets:", err);
-    });
-</script>
+  </script>
 
+  <footer>
+    &copy; 2025 Banco de Aprecios Postcapitalista
+  </footer>
+
+</body>
+</html>
