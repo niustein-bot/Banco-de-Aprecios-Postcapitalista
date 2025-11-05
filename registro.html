@@ -78,10 +78,9 @@ nav a:hover {
   
   
   
-  <script>
+ <script>
   const sheetID = "1eFCQsU7M2OmXGIcfXhTpLP--RtYkT4FYDHMQPAr1cC8";
   const sheetName = "Horas";
-  
   const url = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?tqx=out:json&sheet=${sheetName}`;
 
   fetch(url)
@@ -93,10 +92,10 @@ nav a:hover {
       rows.forEach(row => {
         const nombre = row.c[0]?.v;
         const puntos = row.c[1]?.v;
-        console.log(`${nombre}: ${horas}`);
+        console.log(`${nombre}: ${puntos}`);
         // Aquí puedes mostrarlo en tu HTML, por ejemplo:
         const p = document.createElement("p");
-        p.textContent = `${nombre}: ${horas} horas`;
+        p.textContent = `${nombre}: ${puntos} puntos`;
         document.body.appendChild(p);
       });
     })
@@ -104,3 +103,4 @@ nav a:hover {
       console.error("Error al cargar los datos de Google Sheets:", err);
     });
 </script>
+
