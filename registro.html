@@ -13,10 +13,10 @@
       rows.forEach(row => {
         const nombre = row.c[0]?.v;
         const puntos = row.c[1]?.v;
-        console.log(`${nombre}: ${puntos}`);
+        console.log(`${nombre}: ${horas}`);
         // Aquí puedes mostrarlo en tu HTML, por ejemplo:
         const p = document.createElement("p");
-        p.textContent = `${nombre}: ${puntos} puntos`;
+        p.textContent = `${nombre}: ${horas} horas`;
         document.body.appendChild(p);
       });
     })
