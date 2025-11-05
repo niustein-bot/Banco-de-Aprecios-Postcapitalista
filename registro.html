@@ -1,91 +1,7 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Banco de Aprecios Postcapitalista</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(to right, #f8f9fa, #e9ecef);
-      color: #323;
-    }
-
-    header {
-      background-color: #c084;
-      color: white;
-      padding: 40px 20px;
-      text-align: center;
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 3em;
-    }
-
-   
-nav {
-  background-color: #5b5f75; /* gris lavanda moderno */
-  display: flex;
-  justify-content: center;
-  padding: 10px 0;
-  flex-wrap: wrap;
-}
-
-nav a {
-  color: #f3f4f6; /* gris claro suave */
-  text-decoration: none;
-  margin: 6px 12px;
-  font-weight: 500;
-  font-size: 0.95em;
-  transition: color 0.3s, background-color 0.3s;
-  padding: 6px 10px;
-  border-radius: 4px;
-}
-
-nav a:hover {
-  color: white;
-  background-color: #c084
-
-
-
-
-    
-
-    main {
-      padding: 40px;
-      text-align: center;
-    }
-
-    footer {
-      background-color: #f1f1f1;
-      text-align: center;
-      padding: 20px;
-      font-size: 0.9em;
-      color: #666;
-
-      
-      .nav-button {
-        padding: 8px 16px;
-        font-size: 0.9em;
-      }
-    }
-  </style>
-</head>
-<body>
-
-  <header>
-    <h1>Banco de Aprecios Postcapitalista</h1>
-    <a href="index.html" class="nav-button">Volver al inicio</a>
-  </header>
-
-</body>
 <script>
   const sheetID = "1eFCQsU7M2OmXGIcfXhTpLP--RtYkT4FYDHMQPAr1cC8";
-  const sheetName = "Horas"; // nombre de la hoja
-  const url = `https://docs.google.com/spreadsheets/d/e/2PACX-1vSd9t2CKUmoMkreyLzt5_BEVii2ccdZLwFW_XJxYNV1Aah6F-3-33zwzZSyzqWqhIozPe2MBP8f5TFX/pubhtml?gid=0&single=true`;
+  const sheetName = "Horas";
+  const url = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?tqx=out:json&sheet=${sheetName}`;
 
   fetch(url)
     .then(res => res.text())
@@ -97,7 +13,13 @@ nav a:hover {
         const nombre = row.c[0]?.v;
         const puntos = row.c[1]?.v;
         console.log(`${nombre}: ${puntos}`);
-        // Aquí puedes mostrarlo en tu HTML
+        // Aquí puedes mostrarlo en tu HTML, por ejemplo:
+        const p = document.createElement("p");
+        p.textContent = `${nombre}: ${puntos} puntos`;
+        document.body.appendChild(p);
       });
+    })
+    .catch(err => {
+      console.error("Error al cargar los datos de Google Sheets:", err);
     });
 </script>
