@@ -38,20 +38,28 @@
       background-color: white;
     }
  .nav-button {
-      display: inline-block;
-      margin-top: 12px;
-      padding: 10px 20px;
-      background-color: white;
-      color: #98A869;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: background-color 0.3s;
-    }
+ .nav-button {
+  display: inline-block;
+  margin-top: 4px;
+  padding: 5px 14px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: rgba(63, 81, 181, 0.75); /* Indigo claro */
+  background-color: #ffffff;
+  border: none;
+  border-radius: 16px;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  backdrop-filter: blur(2px);
+}
 
-    .nav-button:hover {
-      background-color: #e2e6ea;
-    }
+.nav-button:hover {
+  background-color: rgba(255, 255, 255, 0.6); /* Más transparente */
+  color: rgba(63, 81, 181, 0.6); /* Letra más tenue */
+  box-shadow: none;
+  transform: translateY(-1px);
+}
+
     th, td {
       padding: 10px;
       border: 1px solid #ccc;
