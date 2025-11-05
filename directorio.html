@@ -178,13 +178,14 @@ summary span {
 
 
 
- <script>
+<script>
   function expandDetailsFromHash() {
     const hash = window.location.hash;
     if (hash) {
-      const target = document.querySelector(hash);
+      const id = hash.substring(1); // remove the '#' symbol
+      const target = document.getElementById(id);
       if (target && target.tagName.toLowerCase() === 'details') {
-        // Cierra todos los detalles primero (opcional)
+        // Cierra todos los demás detalles (opcional)
         document.querySelectorAll('details').forEach(d => d.open = false);
 
         // Abre el objetivo
@@ -198,10 +199,7 @@ summary span {
     }
   }
 
-  // Ejecutar al cargar
   document.addEventListener('DOMContentLoaded', expandDetailsFromHash);
-
-  // Ejecutar si el hash cambia (por ejemplo, al navegar internamente)
   window.addEventListener('hashchange', expandDetailsFromHash);
 </script>
 
