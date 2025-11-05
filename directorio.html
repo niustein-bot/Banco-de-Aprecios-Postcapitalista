@@ -184,12 +184,12 @@ summary span {
       const target = document.querySelector(hash);
       if (target && target.tagName.toLowerCase() === 'details') {
         // Cierra todos los detalles primero (opcional)
-        document.querySelectorAll('details').forEach(d => d.removeAttribute('open'));
+        document.querySelectorAll('details').forEach(d => d.open = false);
 
-        // Abre el objetivo
-        target.setAttribute('open', '');
+        // Abre el objetivo correctamente
+        target.open = true;
 
-        // Espera un poco y hace scroll
+        // Scroll al elemento
         setTimeout(() => {
           target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }, 200);
@@ -197,6 +197,7 @@ summary span {
     }
   });
 </script>
+
 
   
   </body>
