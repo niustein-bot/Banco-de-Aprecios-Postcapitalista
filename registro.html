@@ -2,77 +2,127 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Registro</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Directorio de Hospedajes</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background-color: #f0f4f8;
-      padding: 20px;
-      max-width: 800px;
-      margin: auto;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f9fa;
+      color: #333;
     }
 
-    h1 {
+    header {
+      background-color: #5C6BC0;
+      color: white;
+      padding: 20px;
       text-align: center;
+    }
+
+    header h1 {
+      font-size: 1.4em;
+    }
+
+
+    .nav-button {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 10px 20px;
+      background-color: white;
+      color: #007bff;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    .nav-button:hover {
+      background-color: #e2e6ea;
+    }
+
+    main {
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
       color: #2c3e50;
     }
 
-    label {
-      display: block;
-      margin-top: 15px;
-      font-weight: bold;
-    }
+   
 
-    select, input[type="number"], textarea {
-      width: 100%;
-      padding: 8px;
-      margin-top: 5px;
-      border-radius: 4px;
+    .org-label {
+  font-style: italic;
+  font-size: 0.9em;
+  color: #555;
+}
+
+    details {
+      margin-bottom: 20px;
       border: 1px solid #ccc;
-      font-size: 1em;
-    }
-
-    button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      font-size: 1em;
-      background-color: #5C6BC0;
-      color: white;
-      border: none;
       border-radius: 6px;
-      cursor: pointer;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     }
 
-    button:hover {
-      background-color: #3f51b5;
+    summary {
+      font-weight: bold;
+      font-size: 1.1em;
+      padding: 12px 16px;
+      background-color: #e9ecef;
+      cursor: pointer;
+      border-bottom: 1px solid #ccc;
     }
 
     table {
       width: 100%;
-      margin-top: 30px;
       border-collapse: collapse;
+      font-size: 0.95em;
     }
 
     th, td {
       padding: 10px;
       border-bottom: 1px solid #ddd;
       text-align: left;
+      vertical-align: top;
     }
 
     th {
       background-color: #fb7185;
-      color: white;
+      font-weight: 600;
     }
 
-    .error {
-      color: red;
-      margin-top: 10px;
+    @media screen and (max-width: 600px) {
+      table, th, td {
+        font-size: 0.85em;
+      }
+
+summary span {
+  font-style: italic;
+  font-size: 0.85em;
+  font-weight: 300;
+  color: #555;
+}
+
+      .nav-button {
+        padding: 8px 16px;
+        font-size: 0.9em;
+      }
     }
   </style>
 </head>
 <body>
 
-  <h1>Juego de Puntos</h1>
+  <header>
+    <h1>Banco de Aprecios Postcapitalista</h1>
+    <a href="index.html" class="nav-button">Volver al inicio</a>
+  </header>
+
+  <h2>REGISTRO DE INTERCAMBIOS</h2>
 
   <label for="from">TU NOMBRE</label>
   <select id="from"></select>
