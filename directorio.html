@@ -178,8 +178,8 @@ summary span {
 
 
 
-  <script>
-  document.addEventListener('DOMContentLoaded', () => {
+ <script>
+  function expandDetailsFromHash() {
     const hash = window.location.hash;
     if (hash) {
       const target = document.querySelector(hash);
@@ -187,7 +187,7 @@ summary span {
         // Cierra todos los detalles primero (opcional)
         document.querySelectorAll('details').forEach(d => d.open = false);
 
-        // Abre el objetivo correctamente
+        // Abre el objetivo
         target.open = true;
 
         // Scroll al elemento
@@ -196,8 +196,15 @@ summary span {
         }, 200);
       }
     }
-  });
+  }
+
+  // Ejecutar al cargar
+  document.addEventListener('DOMContentLoaded', expandDetailsFromHash);
+
+  // Ejecutar si el hash cambia (por ejemplo, al navegar internamente)
+  window.addEventListener('hashchange', expandDetailsFromHash);
 </script>
+
 
   
   </body>
