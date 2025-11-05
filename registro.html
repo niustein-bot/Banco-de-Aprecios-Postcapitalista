@@ -1,15 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Registro</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0f4f8;
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
+    }
 
-<header>
-  <h1>Banco de Aprecios Postcapitalista</h1>
-  <a href="index.html" style="
-    display: inline-block;
-    margin-top: 10px;
-    padding: 8px 16px;
-    background-color: white;
-    color: #007bff;
-    border: 2px solid white;
-    border-radius: 4px;
-    text-decoration: none;
-    font-weight: bold;
-  ">Volver al inicio</a>
-</header>
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    select, input[type="number"], textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      font-size: 1em;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1em;
+      background-color: #5C6BC0;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #3f51b5;
+    }
+
+    table {
+      width: 100%;
+      margin-top: 30px;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+      text-align: left;
+    }
+
+    th {
+      background-color: #fb7185;
+      color: white;
+    }
+
+    .error {
+      color: red;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Juego de Puntos</h1>
+
+  <label for="from">TU NOMBRE</label>
+  <select id="from"></select>
+
+  <label for="to">NOMBRE DEL QUE LE QUIERES REGALAR PUNTOS</label>
+  <select id="to"></select>
+
+  <label for="points">CUÁNTOS PUNTOS QUIERES PASAR</label>
+  <input type="number" id="points" min="-10" />
+
+  <label for="comment">COMENTARIOS</label>
+  <textarea id="comment" rows="4"></textarea>
+
+  <button onclick="transferPoints()">Aceptar</button>
+
+  <div class="error" id="error"></div>
+
+  <h2>Movimientos</h2>
+  <table id="logTable">
+    <thead>
+      <tr><th>De</th><th>Para</th><th>Puntos</th><th>Comentario</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <h2>Puntos Totales</h2>
+  <table id="scoreTable">
+    <thead>
+      <tr><th>Nombre</th><th>Puntos</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    const names = [
+      "Alejandra Alfaro Villeda", "Alejandra Maldonado Esquer", "Álvaro Salgado Ramírez",
+      "Argelia Torres Rivera", "Claudia Yadira Caballero Borja", "Emilia Cristina González Machado",
+      "Eric Chaves Ramírez", "Ernesto Israel Santillán Anguiano", "Grisel Pérez Villafuerte",
+      "Ivonne Abigail Vázquez Hernández", "Juan Solano Abadía", "Julio Gisbert",
+      "Mar Daza Quintanilla", "María de Lourdes Sansores Cárdenas", "María Elena Méndez López",
+      "Miguel Carlos Esquivel Pineda", "Nizarindandi Picasso Domínguez", "Omar Felipe Giraldo",
+      "Olivia Sylvester", "Pablo Vicente Gómez Lauría", "Paulino Alexandro Velarde Espinoza",
+      "Quetzalli Ocampo Quinto", "Rosa Elva Zúñiga López", "Saharai Martínez Arellano"
+    ];
+
+    const scores = {};
+    names.forEach(name => scores[name] = 5);
+
+    const fromSelect = document.getElementById("from");
+    const toSelect = document.getElementById("to");
+    names.forEach(name => {
+      const option1 = document.createElement("option");
+      option1.value = name;
+      option1.textContent = name;
+      fromSelect.appendChild(option1);
+
+      const option2 = document.createElement("option");
+      option2.value = name;
+      option2.textContent = name;
+      toSelect.appendChild(option2);
+    });
+
+    function updateScoreTable() {
+      const tbody = document.querySelector("#scoreTable tbody");
+      tbody.innerHTML = "";
+      for (const name of names) {
+        const row = document.createElement("tr");
+        row.innerHTML = `<td>${name}</td><td>${scores[name]}</td>`;
+        tbody.appendChild(row);
+      }
+    }
+
+    function transferPoints() {
+      const from = fromSelect.value;
+      const to = toSelect.value;
+      const points = parseInt(document.getElementById("points").value);
+      const comment = document.getElementById("comment").value.trim();
+      const errorDiv = document.getElementById("error");
+      errorDiv.textContent = "";
+
+      if (from === to) {
+        errorDiv.textContent = "No puedes regalar puntos a ti mismo.";
+        return;
+      }
+
+      if (isNaN(points) || points === 0 || points < -10) {
+        errorDiv.textContent = "Ingresa un número válido de puntos (positivo o hasta -10).";
+        return;
+      }
+
+      if (scores[from] < points) {
+        errorDiv.textContent = "No tienes suficientes puntos para regalar.";
+        return;
+      }
+
+      scores[from] -= points;
+      scores[to] += points;
+
+      const logRow = document.createElement("tr");
+      logRow.innerHTML = `<td>${from}</td><td>${to}</td><td>${points}</td><td>${comment}</td>`;
+      document.querySelector("#logTable tbody").appendChild(logRow);
+
+      updateScoreTable();
+    }
+
+    updateScoreTable();
+  </script>
+
+</body>
+</html>
