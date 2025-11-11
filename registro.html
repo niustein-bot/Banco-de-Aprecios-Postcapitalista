@@ -142,7 +142,7 @@
         rows.forEach(row => {
           const nombre = row.c[0]?.v || "";
           const puntos = row.c[1]?.v || 0;
-          const horas = row.c[2]?.v || 0;
+          const horas = row.c[2]?.v || "";
 
           const tr = document.createElement("tr");
           tr.innerHTML = `
