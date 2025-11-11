@@ -1,1 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Banco de Aprecios</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #f8f9fa, #e9ecef);
+      color: #323;
+    }
 
+    header {
+      background-color: #006742;
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 3em;
+    }
+
+    main {
+      padding: 40px;
+      text-align: center;
+    }
+
+    table {
+      margin: auto;
+      border-collapse: collapse;
+      width: 80%;
+      max-width: 600px;
+      background-color: white;
+    }
+
+ .nav-button {
+  display: inline-block;
+  margin-top: 4px;
+  padding: 5px 14px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #B3D37A; /* verde */
+  background-color: #ffffff;
+  border: none;
+  border-radius: 16px;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  backdrop-filter: blur(2px);
+}
+
+.nav-button:hover {
+  background-color: rgba(255, 255, 255, 0.6); /* Más transparente */
+  color: rgba(63, 81, 181, 0.6); /* Letra más tenue */
+  box-shadow: none;
+  transform: translateY(-1px);
+}
+
+
+.reg-button {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 28px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #ffffff; /* verde */
+  background-color: #B3D37A;
+  border: none;
+  border-radius: 16px;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  backdrop-filter: blur(2px);
+}
+
+.reg-button:hover {
+  background-color: #B3D37A; /* Más transparente */
+  color: rgba(63, 81, 181, 0.6); /* Letra más tenue */
+  box-shadow: none;
+  transform: translateY(-1px);
+}
+
+
+    
+    th, td {
+      padding: 10px;
+      border: 1px solid #ccc;
+    }
+
+    th {
+      background-color: #B3D37A;
+      color: white;
+    }
+
+    footer {
+      background-color: #B3D37A;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9em;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Banco de Aprecios</h1>
+    
+     <a href="index.html" class="nav-button">Volver al inicio   </a>
+  <a href="https://form.jotform.com/253078093739063" class="nav-button">¿Necesitas ayuda?</a>
+  </header>
+
+  <main>
+
+  <h2>Estos son los comentarios de intercambios registrados.</h2>  
+    <table id="testimonioTable">
+      <thead>
+        <tr><th>Intercambio</th><th>Horas</th><th>Comentario</th><th>Imagen</th></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </main>
+
+  <script>
+    const sheetID = "1eFCQsU7M2OmXGIcfXhTpLP--RtYkT4FYDHMQPAr1cC8";
+    const sheetName = "Resumen";
+    const url = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?tqx=out:json&sheet=${sheetName}`;
+
+    fetch(url)
+      .then(res => res.text())
+      .then(text => {
+        const json = JSON.parse(text.substr(47).slice(0, -2));
+        const rows = json.table.rows;
+        const tbody = document.querySelector("#puntosTable tbody");
+
+        rows.forEach(row => {
+          const nombre = row.c[0]?.v || "";
+          const puntos = row.c[1]?.v || "";
+          const intercambio = row.c[2]?.v || "";
+
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+          <td>${nombre}</td>
+          <td>${puntos}</td>
+          <td>${intercambio}</td>
+          `;
+          tbody.appendChild(tr);
+        });
+      })
+      .catch(err => {
+        console.error("Error al cargar los datos de Google Sheets:", err);
+      });
+  </script>
+
+  <footer>
+    &copy; 2025 Banco de Aprecios Postcapitalista                       
+  
+  </footer>
+
+</body>
+</html>
