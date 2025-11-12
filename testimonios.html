@@ -137,6 +137,7 @@
     // Función para truncar texto a 50 caracteres con "..."
   function truncarTexto(texto, maxLength = 50) {
     return texto.length > maxLength ? texto.slice(0, maxLength) + "..." : texto;
+    } 
   
 
     fetch(url)
@@ -153,11 +154,11 @@ const imagen = truncarTexto(row.c[2]?.v || "");
 
 
           const tr = document.createElement("tr");
-          tr.innerHTML = `
-          <td>${intercambio}</td>
-          <td>${comentario}</td>       
-          <td>${imagen}</td>
-          `;
+         tr.innerHTML = `
+  <td title="${row.c[0]?.v || ""}">${intercambio}</td>
+  <td title="${row.c[1]?.v || ""}">${comentario}</td>       
+  <td title="${row.c[2]?.v || ""}">${imagen}</td>
+`;
           tbody.appendChild(tr);
         });
       })
