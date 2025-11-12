@@ -149,7 +149,7 @@
         const tbody = document.querySelector("#testimonioTable tbody");
 
         rows.forEach(row => {
-        const intercambio = truncarTexto(row.c[0]?.v || "");        
+        const intercambio = row.c[0]?.v || "";        
 const comentario = truncarTexto(row.c[1]?.v || "");
 const imagen = truncarTexto(row.c[2]?.v || "");
 
