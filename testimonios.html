@@ -122,7 +122,7 @@
   <h2>Estos son los comentarios de intercambios registrados.</h2>  
     <table id="testimonioTable">
       <thead>
-        <tr><th>Intercambio</th><th>Comentario</th><th>Imagen</th></tr>
+        <tr><th>Intercambio</th><th>Comentario</th></tr>
       </thead>
       <tbody></tbody>
     </table>
@@ -136,7 +136,7 @@
 
 
     // Función para truncar texto a 50 caracteres con "..."
-  function truncarTexto(texto, maxLength = 150) {
+  function truncarTexto(texto, maxLength = 180) {
     return texto.length > maxLength ? texto.slice(0, maxLength) + "..." : texto;
     } 
   
@@ -151,7 +151,7 @@
         rows.forEach(row => {
         const intercambio = row.c[0]?.v || "";        
 const comentario = truncarTexto(row.c[1]?.v || "");
-const imagen = truncarTexto(row.c[2]?.v || "");
+
 
 
           const tr = document.createElement("tr");
