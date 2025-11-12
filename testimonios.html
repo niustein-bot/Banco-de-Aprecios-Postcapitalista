@@ -103,6 +103,29 @@
       font-size: 0.9em;
       color: #666;
     }
+
+
+ .galeria {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .galeria img {
+    width: 200px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+    object-fit: cover;
+  }
+
+  .galeria img:hover {
+    transform: scale(1.05);
+  }
+    
   </style>
 </head>
 <body>
@@ -127,46 +150,57 @@
       <tbody></tbody>
     </table>
   </main>
+<script>
+  const sheetID = "1eFCQsU7M2OmXGIcfXhTpLP--RtYkT4FYDHMQPAr1cC8";
+  const sheetName = "Resumen";
+  const url = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?tqx=out:json&sheet=${sheetName}`;
 
-  <script>
-
-    const sheetID = "1eFCQsU7M2OmXGIcfXhTpLP--RtYkT4FYDHMQPAr1cC8";
-    const sheetName = "Resumen";
-    const url = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?tqx=out:json&sheet=${sheetName}`;
-
-
-    // Función para truncar texto a 300 caracteres con "..."
+  // Función para truncar texto a 300 caracteres con "..."
   function truncarTexto(texto, maxLength = 300) {
     return texto.length > maxLength ? texto.slice(0, maxLength) + "..." : texto;
-    } 
-  
+  }
 
-    fetch(url)
-      .then(res => res.text())
-      .then(text => {
-        const json = JSON.parse(text.substr(47).slice(0, -2));
-        const rows = json.table.rows;
-        const tbody = document.querySelector("#testimonioTable tbody");
+  fetch(url)
+    .then(res => res.text())
+    .then(text => {
+      const json = JSON.parse(text.substr(47).slice(0, -2));
+      const rows = json.table.rows;
+      const tbody = document.querySelector("#testimonioTable tbody");
+      const galeria = document.getElementById("galeria");
 
-        rows.forEach(row => {
+      rows.forEach(row => {
         const intercambio = row.c[0]?.v || "";        
-const comentario = truncarTexto(row.c[1]?.v || "");
+        const comentario = truncarTexto(row.c[1]?.v || "");
+        const imagenURL = row.c[2]?.v || "";
 
+        // Agregar fila a la tabla
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td title="${row.c[0]?.v || ""}">${intercambio}</td>
+          <td title="${row.c[1]?.v || ""}">${comentario}</td>
+        `;
+        tbody.appendChild(tr);
 
-
-          const tr = document.createElement("tr");
-         tr.innerHTML = `
-  <td title="${row.c[0]?.v || ""}">${intercambio}</td>
-  <td title="${row.c[1]?.v || ""}">${comentario}</td>  
-`;
-          tbody.appendChild(tr);
-        });
-      })
-      .catch(err => {
-        console.error("Error al cargar los datos de Google Sheets:", err);
+        // Agregar imagen a la galería
+        if (imagenURL) {
+          const img = document.createElement("img");
+          img.src = imagenURL;
+          img.alt = "Foto subida";
+          img.style.width = "200px";
+          img.style.margin = "10px";
+          galeria.appendChild(img);
+        }
       });
-  </script>
+    })
+    .catch(err => {
+      console.error("Error al cargar los datos de Google Sheets:", err);
+    });
+</script>
 
+
+
+
+  
   <footer>
     &copy; 2025 Banco de Aprecios Postcapitalista                       
   
