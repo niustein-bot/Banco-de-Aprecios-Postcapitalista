@@ -157,8 +157,7 @@ const comentario = truncarTexto(row.c[1]?.v || "");
           const tr = document.createElement("tr");
          tr.innerHTML = `
   <td title="${row.c[0]?.v || ""}">${intercambio}</td>
-  <td title="${row.c[1]?.v || ""}">${comentario}</td>       
-  <td title="${row.c[2]?.v || ""}">${imagen}</td>
+  <td title="${row.c[1]?.v || ""}">${comentario}</td>  
 `;
           tbody.appendChild(tr);
         });
