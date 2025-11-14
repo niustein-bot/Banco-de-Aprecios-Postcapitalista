@@ -4,6 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Banco de Aprecios</title>
+  <script>
+        function verificarPassword() {
+            var password = prompt("Introduce la contraseña:");
+            if (password === "1234") {
+                document.getElementById("contenido").style.display = "block";
+            } else {
+                alert("Contraseña incorrecta");
+            }
+        }
+    </script>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -144,7 +154,8 @@ nav a:hover {
     }
   </style>
 </head>
-<body>
+<body onload="verificarPassword()">
+  
 
   <header>
     <h1>Banco de Aprecios</h1>
